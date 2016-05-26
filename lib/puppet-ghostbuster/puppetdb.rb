@@ -18,7 +18,7 @@ class PuppetGhostbuster
     end
 
     def self.classes
-      @@classes ||= client.request('resources', [:'=', 'type', 'Class']).data.map { |r| r['title'] }.uniq
+      @@classes ||= client.request('resources', ["extract", [["function", "count"], "title"], ["=", "type", "Class"], ["group_by", "title"]]).data.map { |r| r['title'] }
     end
 
     def classes
